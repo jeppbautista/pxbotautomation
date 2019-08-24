@@ -1,0 +1,41 @@
+a:active, a:focus {
+  outline: 0;
+  border: none;
+  -moz-outline-style: none;
+}
+
+.sidebar{
+    background-color: #97B47D;
+}
+
+.sidenav-trigger-div{
+    float:right;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    color: #615C50;
+}
+
+.sidenav-trigger-icon{
+    max-height: 50px;
+    margin-right: 10px;
+}
+
+ul.sidebar > li > a{
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.top-nav {
+    padding: 10px;
+    width: 100%;
+    background-color: white;
+    color: #615C50;
+}
+
+.nav-header{
+    float: left;
+    display: flex;
+    align-items: center;
+}

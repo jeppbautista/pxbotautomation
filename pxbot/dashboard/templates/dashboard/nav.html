@@ -1,0 +1,25 @@
+{% load static %}
+<ul id="slide-out" class="sidenav sidebar">
+   <li>
+      <div class="user-view">
+         <a href="#user"><img class="circle" src="{% static 'dashboard/image/user.jpg' %}"></a>
+         <a href="#name"><span class="white-text name"> <b>Admin</b> </span></a>
+         <a href="#email"><span class="white-text email"></span></a>
+      </div>
+   </li>
+   <li><div class="divider"></div></li>
+   <li><a href="#!"><i class="material-icons">supervised_user_circle</i>User Management</a></li>
+   <li><a href="#!"><i class="material-icons">settings_applications</i>Automation Management</a></li>
+   <li><a href="#!"><i class="material-icons">notes</i>Logs</a></li>
+</ul>
+<div class="row top-nav shadow">
+    <div class="col s10 nav-header">
+        <h5> <b>Main Dashboard</b> </h5>
+    </div>
+     <div data-target="slide-out" class="sidenav-trigger col s2">
+         <a href="#" class="sidenav-trigger-div ">
+            <img class="circle sidenav-trigger-icon" src="{% static 'dashboard/image/user.jpg' %}">
+            Admin
+         </a>
+    </div>
+</div>
