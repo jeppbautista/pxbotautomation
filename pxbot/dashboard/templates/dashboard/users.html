@@ -1,0 +1,63 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+
+{% include 'dashboard/nav.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'dashboard/css/user.css' %}">
+
+<div class="container ">
+    <div class="row">
+
+        <a href="{% url 'dashboard:index' %}" id="btn-back" class="waves-effect waves-light btn"><i class="material-icons left">arrow_back</i>Back</a>
+        <a href="{% url 'dashboard:create' %}" class="waves-effect waves-light btn btn-add-user"><i class="material-icons left">add</i>add user</a>
+    </div>
+    <br>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="shadow div-form">
+
+        <table class="striped table-users">
+        <thead>
+            <tr>
+                <td>User</td>
+            </tr>
+        </thead>
+        <tbody>
+                {% for article in object_list %}
+                    <tr>
+                        <td><a href="{% url 'dashboard:users' article.id %}"> {{ article.username }} </a> </td>
+                        <td>
+                            <div class="switch">
+                                <form method="post" id="form-update-active">{% csrf_token %}
+                                    <input hidden name="user_id" id = "user_id" value="{{ article.id }}">
+                                    <label>
+                                    Inactive
+                                    {% if article.is_active == False %}
+                                    <input class="check-active" id="is_active_{{article.id}}" name="is_active" type="checkbox" value="False"">
+                                    {% else %}
+                                    <input class="check-active" id="is_active_{{article.id}}" name="is_active" checked type="checkbox" value="True"">
+                                    {% endif %}
+                                    <span class="lever"></span>
+                                    Active
+                                </label>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+        </tbody>
+        </table>
+    </div>
+
+
+
+</div>
+
+
+{% endblock %}

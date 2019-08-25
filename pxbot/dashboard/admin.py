@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import TransactionLog, User, Config
+
+admin.site.register(TransactionLog)
+admin.site.register(User)
+admin.site.register(Config)

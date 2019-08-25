@@ -1,0 +1,29 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+
+{% include 'dashboard/nav.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'dashboard/css/user.css' %}">
+<div class="container ">
+    <div class="row">
+        <a href="{% url 'dashboard:users' %}" id="btn-back" class="waves-effect waves-light btn"><i class="material-icons left">arrow_back</i>Back</a>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="div-form shadow">
+        <h5 class="module-title">Add new user</h5>
+        <br>
+        <form method="post">{% csrf_token %}
+            {{ form.as_table }}
+            <button class="btn waves-effect waves-light btn-add-user" type="submit" id="submit-user" name="action">Submit
+                  <i class="material-icons right">send</i>
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

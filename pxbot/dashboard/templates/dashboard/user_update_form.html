@@ -1,0 +1,23 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+
+{% include 'dashboard/nav.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'dashboard/css/user.css' %}">
+<div class="container ">
+    <div class="row">
+        <a href="{% url 'dashboard:users' %}" id="btn-back" class="waves-effect waves-light btn"><i class="material-icons left">arrow_back</i>Back</a>
+    </div>
+    <div class="div-form shadow">
+        <h5 class="module-title">Update user</h5>
+        <br>
+        <form method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn waves-effect waves-light btn-add-user" type="submit" id="submit-user" name="action" value="Update">Submit
+                  <i class="material-icons right">send</i>
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -8,13 +8,13 @@
       </div>
    </li>
    <li><div class="divider"></div></li>
-   <li><a href="#!"><i class="material-icons">supervised_user_circle</i>User Management</a></li>
+   <li><a href="{% url 'dashboard:users' %}"><i class="material-icons">supervised_user_circle</i>User Management</a></li>
    <li><a href="#!"><i class="material-icons">settings_applications</i>Automation Management</a></li>
    <li><a href="#!"><i class="material-icons">notes</i>Logs</a></li>
 </ul>
 <div class="row top-nav shadow">
     <div class="col s10 nav-header">
-        <h5> <b>Main Dashboard</b> </h5>
+       <a href="{% url 'dashboard:index' %}"><h5> <b> {{ header }} </b> </h5></a>
     </div>
      <div data-target="slide-out" class="sidenav-trigger col s2">
          <a href="#" class="sidenav-trigger-div ">

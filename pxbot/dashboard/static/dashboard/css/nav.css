@@ -31,6 +31,9 @@ ul.sidebar > li > a{
     padding: 10px;
     width: 100%;
     background-color: white;
+}
+
+.nav-header > a{
     color: #615C50;
 }
 

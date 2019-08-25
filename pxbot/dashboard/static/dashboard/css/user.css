@@ -1,0 +1,40 @@
+.module-title{
+    text-align: center;
+}
+
+.div-form{
+    padding: 40px;
+    overflow: auto;
+}
+
+.table-users > thead {
+    //background-color:  #615C50;
+    font-weight: bold;
+    border-bottom: 1px solid #666;
+}
+
+.table-users > * > tr > td {
+    padding: 15px;
+}
+
+.btn-add-user{
+    float: right;
+    background-color: #97B47D;
+}
+
+#submit-user{
+    margin-top: 10px;
+}
+
+#btn-back{
+    background-color: #615C50;
+}
+
+form {
+    width: 55%;
+    margin: auto;
+}
+
+#id_is_active{
+    opacity: 100;
+}
