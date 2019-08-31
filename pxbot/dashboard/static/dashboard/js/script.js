@@ -6,28 +6,48 @@ $(document).ready(function(){
         $('#form-update-active').submit();
     });
 
-    $('#click-me').on('click', function(){
+    function callAutomation(){
         $.ajax({
             url: "automation/",
             type: "GET",
             data: {},
-            success: function () {
-                alert('foo');
+            success: function (data) {
+                console.log(data);
             },
             error: function (data) {
                 console.log(data);
             }
         });
-    });
+    }
 
     function pad (str, max) {
         str = str.toString();
         return str.length < max ? pad("0" + str, max) : str;
     }
 
-    var currentdate = new Date();
-    currentdate.setSeconds(currentdate.getSeconds() +10)
-    var countDownDate = new Date(currentdate.toISOString()).getTime();
+    function getCountdown(){
+        initTime = new Date();
+        initTime.setHours(1);
+        initTime.setMinutes(0);
+        initTime = new Date(initTime.toISOString()).getTime();
+
+        var currentdate = new Date();
+        currentdate.setHours(currentdate.getHours());
+        currentdate = new Date(currentdate.toISOString()).getTime();
+
+
+        var $h = $(initTime);
+        for(var i = 1; i < 23; i++){
+            $h = $h.add(initTime + (3600000 * i) );
+            var t = initTime + (3600000 * i) ;
+            if (t > currentdate) {
+                return t;
+            }
+        }
+    }
+
+    var countDownDate = getCountdown();
+
 
     function runClock(){
             // Get today's date and time
@@ -47,11 +67,8 @@ $(document).ready(function(){
 
           // If the count down is finished, write some text
           if (distance < 0) {
-
-                currentdate = new Date();
-                currentdate.setHours(currentdate.getHours() +1)
-                countDownDate = new Date(currentdate.toISOString()).getTime();
-
+                countDownDate = getCountdown();
+                callAutomation();
           }
     }
 

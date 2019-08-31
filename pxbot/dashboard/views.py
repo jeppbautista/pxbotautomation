@@ -2,13 +2,12 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.utils import timezone
 from django.views import View, generic
 from django.contrib import messages
 
 from .models import User
-from .forms import  UserCreateForm, UserEditForm, UserUpdateActiveForm
-
+from .forms import UserCreateForm, UserEditForm, UserUpdateActiveForm
+from .crawler import pxbot as px
 
 import logging
 
@@ -24,7 +23,7 @@ class DashView(View):
                                                         'total_inactive': total_inactive, 'total_active': total_active})
 
 
-class UserView(generic.DetailView):
+class UserView(generic.ListView):
     model = User
     paginate_by = 10
     template_name = 'dashboard/users.html'
@@ -36,8 +35,6 @@ class UserView(generic.DetailView):
         id = request.POST['user_id']
         instance = User.objects.get(id=id)
         form = UserUpdateActiveForm(request.POST, instance=instance)
-
-        print(id)
 
         if form.is_valid():
             is_active_inst = form.save()
@@ -74,5 +71,36 @@ class UserCreateView(generic.edit.CreateView):
 
 
 def selenium_automation(request):
-    pxbot.Pxbot()
-    # return HttpResponse("Hello Selenium")
+    try:
+        users = User.objects.get(is_active=True)
+    except User.DoesNotExist:
+        return HttpResponseRedirect(reverse("dashboard:index"))
+
+    pxbot = px.Pxbot()
+    wallet = 'payout'
+
+    for user in users:
+        if pxbot.authenticate(user.username, user.password):
+            metrics = pxbot.init_update()
+            if metrics['expired'] != "Never":
+                while metrics['earnings'] + metrics[wallet] >= 10.0:
+                    if 'successfully' in pxbot.transfer_finance(metrics['earnings'], wallet):
+                        metrics['earnings'] -= 10
+                        pxbot.buy_revshares(wallet)
+
+            elif metrics['expired'] == "Never":
+                while metrics['earnings'] >= 25:
+                    if 'successfully' in pxbot.transfer_finance(25, wallet):
+                        metrics['earnings'] -= 25
+                        pxbot.upgrade_membership(wallet)
+
+            user.deposit = metrics['deposit']
+            user.payout = metrics['payout']
+            user.earnings = metrics['earnings']
+            user.total_earned = metrics['total_earned']
+            user.px_expiration = metrics['expired']
+            user.save()
+        else:
+            print("User does not exist: {}".format(user.username))
+
+    return HttpResponseRedirect(reverse("dashboard:index"))
