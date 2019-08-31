@@ -20,6 +20,20 @@ $(document).ready(function(){
         });
     }
 
+    function callExpiration(){
+        $.ajax({
+            url: "expiration/",
+            type: "GET",
+            data: {},
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    }
+
     function pad (str, max) {
         str = str.toString();
         return str.length < max ? pad("0" + str, max) : str;
@@ -69,6 +83,7 @@ $(document).ready(function(){
           if (distance < 0) {
                 countDownDate = getCountdown();
                 callAutomation();
+                callExpiration();
           }
     }
 

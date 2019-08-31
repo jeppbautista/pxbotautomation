@@ -16,6 +16,7 @@ class UserUpdateActiveForm(ModelForm):
 class UserEditForm(ModelForm):
     password = forms.CharField(widget=forms.TextInput(attrs=ATTRS_PASS))
     expiration = forms.DateField(widget=forms.TextInput(attrs=ATTRS_DATE))
+    px_expiration = forms.CharField(widget=forms.TextInput(attrs={'readonly':''}))
 
     class Meta:
         model = User
@@ -23,6 +24,7 @@ class UserEditForm(ModelForm):
             'username',
             'password',
             'expiration',
+            'px_expiration'
         )
 
 

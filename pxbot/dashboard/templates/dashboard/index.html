@@ -18,26 +18,17 @@
             </tr>
          </thead>
          <tbody>
+            {% for user in top_earners %}
             <tr>
-               <td>Alvin</td>
-               <td>Eclair</td>
+               <td>{{ user.username }}</td>
+               <td>$ {{ user.total_earned }}</td>
             </tr>
-            <tr>
-               <td>Alan</td>
-               <td>Jellybean</td>
-            </tr>
-            <tr>
-               <td>Jonathan</td>
-               <td>Lollipop</td>
-            </tr>
-            <tr>
-               <td>Jonathan</td>
-               <td>Lollipop</td>
-            </tr>
+            {% endfor %}
          </tbody>
       </table>
       </div>
    </div>
+
    <div class="col s12 m6 table-div">
       <h5>Ready for buying</h5>
       <hr>
@@ -51,28 +42,19 @@
                </tr>
             </thead>
             <tbody>
+            {% for user in ready_for_buying %}
                <tr>
-                  <td>Alvin</td>
-                  <td>Eclair</td>
+                  <td>{{ user.username }}</td>
+                  <td>$ {{ user.earnings }}</td>
                </tr>
-               <tr>
-                  <td>Alan</td>
-                  <td>Jellybean</td>
-               </tr>
-               <tr>
-                  <td>Jonathan</td>
-                  <td>Lollipop</td>
-               </tr>
-               <tr>
-                  <td>Jonathan</td>
-                  <td>Lollipop</td>
-               </tr>
+            {% endfor %}
             </tbody>
          </table>
       </div>
    </div>
-
 </div>
+
+
 
 <div class="row">
    <div class="col s12 m6  table-div">
@@ -88,28 +70,18 @@
                </tr>
             </thead>
             <tbody>
+            {% for user in near_expiration %}
                <tr>
-                  <td>Alvin</td>
-                  <td>Eclair</td>
+                  <td>{{ user.username }}</td>
+                  <td>{{ user.expiration }}</td>
                </tr>
-               <tr>
-                  <td>Alan</td>
-                  <td>Jellybean</td>
-               </tr>
-               <tr>
-                  <td>Jonathan</td>
-                  <td>Lollipop</td>
-               </tr>
-               <tr>
-                  <td>Jonathan</td>
-                  <td>Lollipop</td>
-               </tr>
+            {% endfor %}
             </tbody>
          </table>
       </div>
    </div>
    <div class="col s12 m6  table-div">
-      <h5 style="color: #F9CA3A;">Near PreneurX membership expiration</h5>
+      <h5 style="color: #F9CA3A;">Expired PreneurX memberships</h5>
       <hr>
       <div class="shadow">
 
@@ -121,22 +93,12 @@
                </tr>
             </thead>
             <tbody>
+             {% for user in px_expirations %}
                <tr>
-                  <td>Alvin</td>
-                  <td>Eclair</td>
+                  <td>{{ user.username }}</td>
+                  <td>{{ user.px_expiration }}</td>
                </tr>
-               <tr>
-                  <td>Alan</td>
-                  <td>Jellybean</td>
-               </tr>
-               <tr>
-                  <td>Jonathan</td>
-                  <td>Lollipop</td>
-               </tr>
-               <tr>
-                  <td>Jonathan</td>
-                  <td>Lollipop</td>
-               </tr>
+            {% endfor %}
             </tbody>
          </table>
       </div>

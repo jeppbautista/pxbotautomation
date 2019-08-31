@@ -15,10 +15,10 @@ import os.path
 PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 
 
-# logging.basicConfig(filename="{}/logs.txt".format(os.path.relpath('../../')),
-#                     format='%(asctime)s [%(levelname)s] - %(message)s',
-#                     datefmt='%Y-%m-%d %H:%M:%S',
-#                     level=logging.INFO)
+logging.basicConfig(filename="{}/logs.txt".format(os.path.relpath('../../')),
+                    format='%(asctime)s [%(levelname)s] - %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S',
+                    level=logging.INFO)
 from selenium.webdriver.support.wait import WebDriverWait
 
 logging.basicConfig(level=logging.INFO)
@@ -35,13 +35,13 @@ class Pxbot:
         proxy = Proxy({
             'proxyType': ProxyType.MANUAL,
             'httpProxy': _proxy,
-            'ftpProxy': _proxy,
-            'sslProxy': _proxy,
-            'noProxy': ''  # set this value as desired
+            'ftpProxy' : _proxy,
+            'sslProxy' : _proxy,
+            'noProxy'  : ''
         })
 
         options = Options()
-        # options.headless = True
+        options.headless = True
 
         try:
             self.driver = webdriver.Firefox(
@@ -250,5 +250,8 @@ class Pxbot:
             return 'successfully'
 
         return result.strip()
+
+    def end(self):
+        self.driver.quit()
 
 

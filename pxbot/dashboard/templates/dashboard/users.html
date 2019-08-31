@@ -26,15 +26,19 @@
         <thead>
             <tr>
                 <td>User</td>
+                <td>PreneurX expiration</td>
+                <td>Payment expiration</td>
             </tr>
         </thead>
         <tbody>
                 {% for article in object_list %}
                     <tr>
                         <td><a href="{% url 'dashboard:users' article.id %}"> {{ article.username }} </a> </td>
+                        <td>{{ article.px_expiration }}</td>
+                        <td>{{ article.expiration }}</td>
                         <td>
                             <div class="switch">
-                                <form method="post" id="form-update-active">{% csrf_token %}
+                                <form method="post" id="form-update-active" >{% csrf_token %}
                                     <input hidden name="user_id" id = "user_id" value="{{ article.id }}">
                                     <label>
                                     Inactive

@@ -38,3 +38,7 @@ form {
 #id_is_active{
     opacity: 100;
 }
+
+#form-update-active{
+    width: 100%;
+}

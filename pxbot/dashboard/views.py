@@ -1,4 +1,6 @@
+import datetime
 
+from django.db.models import F
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -19,8 +21,17 @@ class DashView(View):
         total_users = User.objects.count()
         total_active = User.objects.filter(is_active=True).count()
         total_inactive = User.objects.filter(is_active=False).count()
+
+        top_earners = User.objects.order_by('-total_earned')[:5]
+        ready_for_buying = User.objects.order_by('-payout')[:5]
+        near_expiration = User.objects.order_by('-expiration')[:5]
+        # near_px_expiration = User.objects.order_by('-px_expiration')[:5]
+        px_expirations = User.objects.filter(px_expiration="Never")[:5]
+
         return render(request, 'dashboard/index.html', {'header': 'Admin dashboard', 'total_users': total_users,
-                                                        'total_inactive': total_inactive, 'total_active': total_active})
+                                                        'total_inactive': total_inactive, 'total_active': total_active,
+                                                        'top_earners': top_earners, 'ready_for_buying': ready_for_buying,
+                                                        'near_expiration': near_expiration, 'near_px_expiration': px_expirations})
 
 
 class UserView(generic.ListView):
@@ -72,7 +83,7 @@ class UserCreateView(generic.edit.CreateView):
 
 def selenium_automation(request):
     try:
-        users = User.objects.get(is_active=True)
+        users = User.objects.filter(is_active=True)
     except User.DoesNotExist:
         return HttpResponseRedirect(reverse("dashboard:index"))
 
@@ -100,7 +111,19 @@ def selenium_automation(request):
             user.total_earned = metrics['total_earned']
             user.px_expiration = metrics['expired']
             user.save()
+            pxbot.end()
         else:
             print("User does not exist: {}".format(user.username))
+
+    return HttpResponseRedirect(reverse("dashboard:index"))
+
+
+def expiration(request):
+    for user in User.objects.filter(is_active=True):
+        print(datetime.date.today())
+        print(user.expiration)
+        if datetime.date.today() >= user.expiration:
+            user.is_active = False
+            user.save()
 
     return HttpResponseRedirect(reverse("dashboard:index"))
