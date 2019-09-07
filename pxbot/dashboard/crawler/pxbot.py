@@ -15,7 +15,7 @@ import os.path
 PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 
 
-logging.basicConfig(filename="{}/logs.txt".format(os.path.relpath('../../')),
+logging.basicConfig(filename="{}/logs.txt".format(PROJECT_PATH),
                     format='%(asctime)s [%(levelname)s] - %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S',
                     level=logging.INFO)
@@ -41,21 +41,23 @@ class Pxbot:
         })
 
         options = Options()
-        options.headless = True
+        # options.headless = True
 
         try:
             self.driver = webdriver.Firefox(
                 executable_path="{}/dashboard/crawler/drivers/win-geckodriver.exe".format(os.path.relpath('.')), options=options, proxy=proxy)
         except OSError as ex1:
             logging.exception("Windows error")
+            try:
+                self.driver = webdriver.Firefox(
+                    executable_path="{}/dashboard/crawler/drivers/linux-geckodriver".format(PROJECT_PATH),
+                    options=options, proxy=proxy)
+            except Exception as ex2:
+                logging.exception(ex2)
         except Exception as ex:
             logging.exception(ex)
 
-        try:
-            self.driver = webdriver.Firefox(
-                executable_path="{}/dashboard/crawler/drivers/linux-geckodriver".format(PROJECT_PATH), options=options, proxy=proxy)
-        except Exception as ex2:
-            logging.exception(ex2)
+
 
         logging.info("Drivers initialized")
 
