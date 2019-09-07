@@ -5,3 +5,8 @@
 2019-09-07 13:40:00 [INFO] - /home/jessy/user/sources/py-projects/pX-bot/pxbot/dashboard/views.py changed, reloading.
 2019-09-07 13:47:44 [INFO] - /home/jessy/user/sources/py-projects/pX-bot/pxbot/pxbot/settings.py changed, reloading.
 2019-09-07 14:12:51 [WARNING] - Not Found: /favicon.ico
+2019-09-07 14:16:28 [INFO] - /home/jessy/user/sources/py-projects/pX-bot/pxbot/pxbot/urls.py changed, reloading.
+2019-09-07 14:16:57 [INFO] - /home/jessy/user/sources/py-projects/pX-bot/pxbot/pxbot/urls.py changed, reloading.
+2019-09-07 14:17:21 [INFO] - /home/jessy/user/sources/py-projects/pX-bot/pxbot/pxbot/urls.py changed, reloading.
+2019-09-07 14:17:24 [INFO] - /home/jessy/user/sources/py-projects/pX-bot/pxbot/pxbot/settings.py changed, reloading.
+2019-09-07 14:18:12 [INFO] - /home/jessy/user/sources/py-projects/pX-bot/pxbot/pxbot/urls.py changed, reloading.
