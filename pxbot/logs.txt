@@ -1,1 +1,6 @@
 2019-09-07 13:31:16 [INFO] - /home/jessy/user/sources/py-projects/pX-bot/pxbot/dashboard/crawler/pxbot.py changed, reloading.
+2019-09-07 13:36:18 [INFO] - /home/jessy/user/sources/py-projects/pX-bot/pxbot/pxbot/settings.py changed, reloading.
+2019-09-07 13:39:49 [INFO] - /home/jessy/user/sources/py-projects/pX-bot/pxbot/dashboard/views.py changed, reloading.
+2019-09-07 13:39:54 [INFO] - /home/jessy/user/sources/py-projects/pX-bot/pxbot/dashboard/views.py changed, reloading.
+2019-09-07 13:40:00 [INFO] - /home/jessy/user/sources/py-projects/pX-bot/pxbot/dashboard/views.py changed, reloading.
+2019-09-07 13:47:44 [INFO] - /home/jessy/user/sources/py-projects/pX-bot/pxbot/pxbot/settings.py changed, reloading.
